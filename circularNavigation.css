@@ -1,0 +1,30 @@
+#wheelDiv{
+  top: 10vh;
+  height: 80vh;
+  position: fixed;
+  z-index: 10;
+}
+
+#foo{
+  width: 400px;
+  height: 400px;
+  background-color: red;
+}
+
+.notVisible{
+  display: none !important;
+}
+
+.w3-button{
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    z-index: 11;
+}
+
+/*
+#wrapperOpacity{
+  width: 100%;
+  height: 100vh;
+  opacity: 0.1;
+}*/
