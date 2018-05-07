@@ -78,7 +78,7 @@ wheelnav = function (divId, raphael, divWidth, divHeight) {
     //Public properties
     this.centerX = canvasWidth / 2;
     this.centerY = canvasWidth / 2;
-    this.wheelRadius = canvasWidth / 2;
+    this.wheelRadius = canvasWidth / 2.2;
     this.navAngle = 0;
     this.sliceAngle = null;
     this.titleRotateAngle = null;

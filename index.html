@@ -19,18 +19,27 @@
 
   <h2>An Unordered HTML List</h2>
 
-  <ul>
-    <li>Coffee</li>
+  <ul id="circularMenu">
+    <li>Coffee
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </li>
     <li>Tea</li>
     <li>Milk</li>
+    <li>lalal</li>
   </ul>
 
 <div id="wheelDiv"></div>
 
 
-<div id="foo"></div>
+<div id="wrapperOpacity" class="notVisible"></div>
+<button id="foo">+</button>
 <button class="w3-button w3-xlarge w3-circle w3-blue w3-card-4 notVisible"  id="home_btn"><i class="fas fa-home"></i>
-<!--<div id="wrapperOpacity notVisible"></div>-->
+
 
 <script src="circularNavigation.js"></script>
 </body>
