@@ -16,6 +16,7 @@ const numMaxElements=10;
 var other=false;
 
 var itemsParentList=[];
+var itemsHomeList = [];
 // take the html and put the elements in an array of array
 itemsHome=items = retriveMenuItems($('#circularMenu'));
 
@@ -100,6 +101,7 @@ $('#home_btn').bind('click', function() {
   wheel.removeWheel();
   wheel = new wheelnav("wheelDiv");
   createCircularNav(itemsHome);
+  itemsParentList=itemsHomeList;
   attachSubMenus();
 });
 
@@ -179,12 +181,17 @@ function createCircularNav(items){
 
 
 
-function retriveMenuItems(node){
+function retriveMenuItems(node,firstLevel=false){
   var listOfElements=[];
+  var listOfElementsObject=[];
 
   node.children('li').each(function() {
+        listOfElementsObject.push($(this));
         listOfElements.push($(this).html());
         itemsParentList.push($(this));
+        if(firstLevel){
+          itemsHomeList.push($(this));
+        }
       });
 
 
@@ -192,8 +199,8 @@ function retriveMenuItems(node){
   var listOfTrimmedElements=[];
   for(s=0;s<listOfElements.length;s++){
 
-    if($(itemsParentList[s]).children('a').length==1){
-      listOfElements[s]=$(itemsParentList[s]).children('a').html();
+    if($(listOfElementsObject[s]).children('a').length==1){
+      listOfElements[s]=$(listOfElementsObject[s]).children('a').html();
     }
 
     trimmedElement=$.trim(listOfElements[s]);
@@ -222,23 +229,22 @@ function retriveMenuItems(node){
 
 
 function attachSubMenus(){
-  linkToTemp=[];
 
+  itemsParentListTemp=itemsParentList;
+  itemsParentList=[];
 
-  for(v=0;v<itemsParentList.length;v++){
+  for(v=0;v<itemsParentListTemp.length;v++){
 
-    if($(itemsParentList[v]).children('ul').length>=1){
-      linkTo[v]=retriveMenuItems($(itemsParentList[v]).children('ul'))
+    if($(itemsParentListTemp[v]).children('ul').length>=1){
+      linkTo[v]=retriveMenuItems($(itemsParentListTemp[v]).children('ul'))
     }
-    else if ($(itemsParentList[v]).children('a').length==1) {
-
-      linkTo[v]=[$(itemsParentList[v]).children('a').attr("href")];
+    else if ($(itemsParentListTemp[v]).children('a').length==1) {
+      linkTo[v]=[$(itemsParentListTemp[v]).children('a').attr("href")];
     }
     else {
       linkTo[v]=[];
     }
   }
-
 
 
 
