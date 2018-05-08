@@ -109,8 +109,14 @@ function setWheelItems(){
   wheel = new wheelnav("wheelDiv");
   items=linkTo[courrentItem];
   createCircularNav(items);
-
 }
+
+function goToLink(){
+  courrentItem=wheel.currentClick;
+  window.location.href = linkTo[courrentItem];
+}
+
+
 
 function createCircularNav(items){
   wheel.selectedNavItemIndex = null;
@@ -170,10 +176,18 @@ function retriveMenuItems(){
 
 function attachSubMenus(){
 
-  linkTo=[['title-0', 'title-0'],['title-1', 'title-1'],['title-2', 'title-2','title-2','title-2','title-2'],['title-3', 'title-3','title-3']];
+  linkTo=[['http:/www.google.ch'],[],['title-1', 'title-1'],['title-2', 'title-2','title-2','title-2','title-2'],['title-3', 'title-3','title-3']];
   for(var i=0;i<wheel.navItems.length;i++){
     if(linkTo[i]&&i<numMaxElements){
-      wheel.navItems[i].navigateFunction =function(){setWheelItems();};
+      if(linkTo[i].length==1){
+        wheel.navItems[i].navigateFunction = function(){goToLink();};
+      }
+      else if(linkTo[i].length==0){
+      }
+      else{
+        wheel.navItems[i].navigateFunction =function(){setWheelItems();};
+      }
+
     }
     else if (i==numMaxElements) {
       var otherSelected = false;
