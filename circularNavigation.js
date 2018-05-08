@@ -15,13 +15,15 @@ var otherItems=[];
 const numMaxElements=10;
 var other=false;
 
+var itemsParentList=[];
 // take the html and put the elements in an array of array
-retriveMenuItems();
+itemsHome=items = retriveMenuItems($('#circularMenu'));
 
 
 wheel = new wheelnav("wheelDiv");
 
-itemsHome=items = ['title-0', 'title-1', 'title-2', 'title-3', 'title-4', '5','6','7','8','9'];
+
+//itemsHome=items = ['title-0', 'title-1', 'title-2', 'title-3', 'title-4', '5','6','7','8','9'];
 createCircularNav(items);
 
 
@@ -177,15 +179,23 @@ function createCircularNav(items){
 
 
 
-function retriveMenuItems(){
+function retriveMenuItems(node){
   var listOfElements=[];
-  $('#circularMenu').children('li').each(function() {
+
+  node.children('li').each(function() {
         listOfElements.push($(this).html());
+        itemsParentList.push($(this));
       });
+
 
 
   var listOfTrimmedElements=[];
   for(s=0;s<listOfElements.length;s++){
+
+    if($(itemsParentList[s]).children('a').length==1){
+      listOfElements[s]=$(itemsParentList[s]).children('a').html();
+    }
+
     trimmedElement=$.trim(listOfElements[s]);
     itemText="";
     counterSpaces=0;
@@ -202,18 +212,39 @@ function retriveMenuItems(){
       j++;
 
     }
-    window.alert(itemText);
+
     listOfTrimmedElements[s]=$.trim(itemText);
   }
 
-
+  return listOfTrimmedElements;
 
 }
 
 
 function attachSubMenus(){
+  linkToTemp=[];
 
-  linkTo=[['http:/www.google.ch'],[],['title-1', 'title-1'],['title-2', 'title-2','title-2','title-2','title-2'],['title-3', 'title-3','title-3']];
+
+  for(v=0;v<itemsParentList.length;v++){
+
+    if($(itemsParentList[v]).children('ul').length>=1){
+      linkTo[v]=retriveMenuItems($(itemsParentList[v]).children('ul'))
+    }
+    else if ($(itemsParentList[v]).children('a').length==1) {
+
+      linkTo[v]=[$(itemsParentList[v]).children('a').attr("href")];
+    }
+    else {
+      linkTo[v]=[];
+    }
+  }
+
+
+
+
+
+
+  //linkTo=[['http:/www.google.ch'],[],['title-1', 'title-1'],['title-2', 'title-2','title-2','title-2','title-2'],['title-3', 'title-3','title-3']];
   for(var i=0;i<wheel.navItems.length;i++){
     if(linkTo[i]&&i<numMaxElements){
       if(linkTo[i].length==1){
