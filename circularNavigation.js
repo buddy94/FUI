@@ -1,13 +1,23 @@
+//var for the principal wheel
 var wheel;
+
+//used for adding the other menu
 var wheel2;
+
+// var to store if the circular navigation is open
 var open=false;
+
+//array where store the sub menus/links
 var linkTo=[];
 var otherItems=[];
+
+//num max of elements in a circular navigation
 const numMaxElements=10;
 var other=false;
 
-
+// take the html and put the elements in an array of array
 retriveMenuItems();
+
 
 wheel = new wheelnav("wheelDiv");
 
@@ -168,9 +178,36 @@ function createCircularNav(items){
 
 
 function retriveMenuItems(){
-  //circularMenu= document.getElementById('circularMenu');
-  //subMenus=getChildNodes(circularMenu.getElementsByTagName("ul")[0]);
-  //window.alert();
+  var listOfElements=[];
+  $('#circularMenu').children('li').each(function() {
+        listOfElements.push($(this).html());
+      });
+
+
+  var listOfTrimmedElements=[];
+  for(s=0;s<listOfElements.length;s++){
+    trimmedElement=$.trim(listOfElements[s]);
+    itemText="";
+    counterSpaces=0;
+    j=0;
+    while(counterSpaces<2&&j<trimmedElement.length){
+      if($.trim(trimmedElement).charAt(j)!=" "){
+        itemText+=trimmedElement.charAt(j);
+        counterSpaces=0;
+      }
+      else{
+
+        counterSpaces++;
+      }
+      j++;
+
+    }
+    window.alert(itemText);
+    listOfTrimmedElements[s]=$.trim(itemText);
+  }
+
+
+
 }
 
 
