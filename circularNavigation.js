@@ -29,7 +29,8 @@ wheel = new wheelnav("wheelDiv");
 
 //itemsHome=items = ['title-0', 'title-1', 'title-2', 'title-3', 'title-4', '5','6','7','8','9'];
 createCircularNav(items);
-
+var position = $('#wheelDiv').offset();
+var top_wheel = position.top;
 
 window.onload = function () {
 
@@ -126,7 +127,7 @@ function openWheel(){
   $('#wheelDiv').removeClass("notVisible");
   $('#home_btn').removeClass("notVisible");
   $('#wrapperOpacity').removeClass("notVisible");
-  positionWheel(other);
+  positionHomeBtn(other);
 }
 
 function setWheelItems(){
@@ -301,7 +302,7 @@ function attachSubMenus(){
   }
 }
 
-function positionWheel(other=false){
+function positionHomeBtn(other=false){
 
 
     var width_wheel = $('#wheelDiv').width();
@@ -311,9 +312,11 @@ function positionWheel(other=false){
     var left_wheel = (viewWidth-width_wheel)/2;
     $('#wheelDiv').css({"left":left_wheel});
 
-    var position = $('#wheelDiv').offset();
+
     var height_wheel = $('#wheelDiv').height();
     //var left_wheel = position.left;
-    var top_wheel = position.top;
+
+    
     $('#home_btn').css({"left":left_wheel+(width_wheel/2)-35,"top":top_wheel+(height_wheel/2)-35});
+    //$('#home_btn').css({"left":viewWidth/2,"top":viewHeight/2});
 }
