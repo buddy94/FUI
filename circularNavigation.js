@@ -35,11 +35,20 @@ window.onload = function () {
 };
 
 
+$(window).keydown(function (e) {
+  if (e.keyCode == 27) {
+    open=false;
+    $('#wheelDiv').addClass("notVisible");
+    $('#home_btn').addClass("notVisible");
+    $('#wrapperOpacity').addClass("notVisible");
+  }
+});
 
 $(window).click(function() {
   open=false;
   $('#wheelDiv').addClass("notVisible");
   $('#home_btn').addClass("notVisible");
+  $('#wrapperOpacity').addClass("notVisible");
 });
 
 $('#wheelDiv').click(function(event){
