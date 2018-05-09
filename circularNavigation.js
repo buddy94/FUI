@@ -16,9 +16,12 @@ const numMaxElements=10;
 var other=false;
 
 var itemsParentList=[];
+var itemsGrandParentList=[];
 var itemsHomeList = [];
+
+
 // take the html and put the elements in an array of array
-itemsHome=items = retriveMenuItems($('#circularMenu'));
+itemsHome=items = retriveMenuItems($('#circularMenu'),true);
 
 
 wheel = new wheelnav("wheelDiv");
@@ -131,7 +134,15 @@ function setWheelItems(){
   wheel.removeWheel();
   wheel = new wheelnav("wheelDiv");
   items=linkTo[courrentItem];
+
+  for(l=0;l<courrentItem;l++){
+    itemsBeforeCourrent=itemsGrandParentList[l].children('ul').children('li').length;
+    for(r=0;r<itemsBeforeCourrent;r++){
+      itemsParentList.shift();
+    }
+  }
   createCircularNav(items);
+  attachSubMenus();
 }
 
 function goToLink(){
@@ -239,7 +250,9 @@ function retriveMenuItems(node,firstLevel=false){
 
 function attachSubMenus(){
 
-  itemsParentListTemp=itemsParentList;
+
+
+  itemsGrandParentList=itemsParentListTemp=itemsParentList;
   itemsParentList=[];
 
   for(v=0;v<itemsParentListTemp.length;v++){
@@ -254,9 +267,6 @@ function attachSubMenus(){
       linkTo[v]=[];
     }
   }
-
-
-
 
 
   //linkTo=[['http:/www.google.ch'],[],['title-1', 'title-1'],['title-2', 'title-2','title-2','title-2','title-2'],['title-3', 'title-3','title-3']];
@@ -306,15 +316,4 @@ function positionWheel(other=false){
     //var left_wheel = position.left;
     var top_wheel = position.top;
     $('#home_btn').css({"left":left_wheel+(width_wheel/2)-35,"top":top_wheel+(height_wheel/2)-35});
-}
-
-
-function getChildNodes(node) {
-    var children = new Array();
-    for(var child in node.childNodes) {
-        if(node.childNodes[child].nodeType == 1) {
-            children.push(child);
-        }
-    }
-    return children;
 }
