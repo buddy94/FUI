@@ -162,8 +162,14 @@ function setWheelItems(subMenu=false){
   attachSubMenus();
 }
 
-function goToLink(){
-  courrentItem=wheel.currentClick;
+function goToLink(subMenu=false){
+  courrentItem=0;
+  if(subMenu){
+    courrentItem=numMaxElements+wheel2.currentClick;
+  }
+  else{
+    courrentItem=wheel.currentClick;
+  }
   window.location.href = linkTo[courrentItem];
 }
 
@@ -333,7 +339,7 @@ function attachSubMenus(){
       for(var e=0;e<wheel2.navItems.length;e++){
         if(linkTo[numMaxElements+e]){
           if(linkTo[numMaxElements+e].length==1){
-            wheel2.navItems[e].navigateFunction = function(){goToLink();};
+            wheel2.navItems[e].navigateFunction = function(){goToLink(true);};
           }
           else if(linkTo[e].length==0){
           }
