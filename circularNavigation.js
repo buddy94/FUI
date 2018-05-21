@@ -13,7 +13,7 @@ var otherItems=[];
 var otherItemsHome=[];
 
 //num max of elements in a circular navigation
-const numMaxElements=10;
+const numMaxElements=9;
 var other=false;
 
 var itemsParentList=[];
@@ -138,8 +138,16 @@ function openWheel(){
   positionHomeBtn(other);
 }
 
-function setWheelItems(){
-  courrentItem=wheel.currentClick;
+function setWheelItems(subMenu=false){
+  courrentItem=0;
+  if(subMenu){
+    courrentItem=numMaxElements+wheel2.currentClick;
+  }
+  else{
+    courrentItem=wheel.currentClick;
+  }
+
+
   wheel.removeWheel();
   wheel = new wheelnav("wheelDiv");
   items=linkTo[courrentItem];
@@ -320,7 +328,19 @@ function attachSubMenus(){
           otherSelected = !otherSelected;
 
       };
+      for(var e=0;e<wheel2.navItems.length;e++){
+        if(linkTo[numMaxElements+e]){
+          if(linkTo[numMaxElements+e].length==1){
+            wheel2.navItems[e].navigateFunction = function(){goToLink();};
+          }
+          else if(linkTo[e].length==0){
+          }
+          else{
+            wheel2.navItems[e].navigateFunction =function(){setWheelItems(true);};
+          }
 
+        }
+      }
     }
   }
 }
