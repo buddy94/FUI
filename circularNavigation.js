@@ -178,7 +178,7 @@ function goToLink(subMenu=false){
 function createCircularNav(items){
   wheel.selectedNavItemIndex = null;
   wheel.clickModeRotate = false;
-  wheel.titleRotateAngle = 0;
+  wheel.titleRotateAngle = 180;
   wheel.hoverPercent = 1.1;
   wheel.animatetime = 1;
   wheel.animateeffect = 'linear';
@@ -199,8 +199,11 @@ function createCircularNav(items){
     }
 
     items.push(". . .");
+    wheel.initWheel(items);
+    setTitleAngle(items);
+    wheel.createWheel();
 
-    wheel.createWheel(items);
+
 
 
 
@@ -226,7 +229,10 @@ function createCircularNav(items){
     wheel2.createWheel();
   }
   else{
+    wheel.initWheel(items);
+    setTitleAngle(items);
     wheel.createWheel(items);
+
   }
 
 
@@ -261,12 +267,12 @@ function retriveMenuItems(node,firstLevel=false){
     counterSpaces=0;
     j=0;
     while(counterSpaces<2&&j<trimmedElement.length){
-      if($.trim(trimmedElement).charAt(j)!=" "){
+      if(trimmedElement.charAt(j)!=" "){
         itemText+=trimmedElement.charAt(j);
         counterSpaces=0;
       }
       else{
-
+        itemText+=trimmedElement.charAt(j);
         counterSpaces++;
       }
       j++;
@@ -274,6 +280,7 @@ function retriveMenuItems(node,firstLevel=false){
     }
 
     listOfTrimmedElements[s]=$.trim(itemText);
+
   }
 
   return listOfTrimmedElements;
@@ -370,4 +377,81 @@ function positionHomeBtn(other=false){
 
     $('#home_btn').css({"left":left_wheel+(width_wheel/2)-35,"top":top_wheel+(height_wheel/2)-35});
     //$('#home_btn').css({"left":viewWidth/2,"top":viewHeight/2});
+}
+
+
+
+function setTitleAngle(items){
+  if(items.length==2){
+    wheel.navItems[0].titleRotateAngle = 0;
+    wheel.navItems[1].titleRotateAngle = 180;
+  }
+  else if(items.length==3){
+    wheel.navItems[0].titleRotateAngle = 0;
+    wheel.navItems[1].titleRotateAngle = 180;
+    wheel.navItems[2].titleRotateAngle = 180;
+  }
+  else if(items.length==4){
+    wheel.navItems[0].titleRotateAngle = 0;
+    wheel.navItems[1].titleRotateAngle = 180;
+    wheel.navItems[2].titleRotateAngle = 180;
+    wheel.navItems[3].titleRotateAngle = 180;
+  }
+  else if(items.length==5){
+    wheel.navItems[0].titleRotateAngle = 0;
+    wheel.navItems[1].titleRotateAngle = 0;
+    wheel.navItems[2].titleRotateAngle = 180;
+    wheel.navItems[3].titleRotateAngle = 180;
+    wheel.navItems[4].titleRotateAngle = 0;
+  }
+  else if(items.length==6){
+    wheel.navItems[0].titleRotateAngle = 0;
+    wheel.navItems[1].titleRotateAngle = 0;
+    wheel.navItems[2].titleRotateAngle = 180;
+    wheel.navItems[3].titleRotateAngle = 180;
+    wheel.navItems[4].titleRotateAngle = 180;
+    wheel.navItems[5].titleRotateAngle = 0;
+  }
+  else if(items.length==7){
+    wheel.navItems[0].titleRotateAngle = 0;
+    wheel.navItems[1].titleRotateAngle = 0;
+    wheel.navItems[2].titleRotateAngle = 180;
+    wheel.navItems[3].titleRotateAngle = 180;
+    wheel.navItems[4].titleRotateAngle = 180;
+    wheel.navItems[5].titleRotateAngle = 180;
+    wheel.navItems[6].titleRotateAngle = 0;
+  }
+  else if(items.length==8){
+    wheel.navItems[0].titleRotateAngle = 0;
+    wheel.navItems[1].titleRotateAngle = 0;
+    wheel.navItems[2].titleRotateAngle = 180;
+    wheel.navItems[3].titleRotateAngle = 180;
+    wheel.navItems[4].titleRotateAngle = 180;
+    wheel.navItems[5].titleRotateAngle = 180;
+    wheel.navItems[6].titleRotateAngle = 0;
+    wheel.navItems[7].titleRotateAngle = 0;
+  }
+  else if(items.length==9){
+    wheel.navItems[0].titleRotateAngle = 0;
+    wheel.navItems[1].titleRotateAngle = 0;
+    wheel.navItems[2].titleRotateAngle = 180;
+    wheel.navItems[3].titleRotateAngle = 180;
+    wheel.navItems[4].titleRotateAngle = 180;
+    wheel.navItems[5].titleRotateAngle = 180;
+    wheel.navItems[6].titleRotateAngle = 180;
+    wheel.navItems[7].titleRotateAngle = 0;
+    wheel.navItems[8].titleRotateAngle = 0;
+  }
+  else if(items.length==10){
+    wheel.navItems[0].titleRotateAngle = 0;
+    wheel.navItems[1].titleRotateAngle = 0;
+    wheel.navItems[2].titleRotateAngle = 180;
+    wheel.navItems[3].titleRotateAngle = 180;
+    wheel.navItems[4].titleRotateAngle = 180;
+    wheel.navItems[5].titleRotateAngle = 180;
+    wheel.navItems[6].titleRotateAngle = 180;
+    wheel.navItems[7].titleRotateAngle = 180;
+    wheel.navItems[8].titleRotateAngle = 0;
+    wheel.navItems[9].titleRotateAngle = 0;
+  }
 }
