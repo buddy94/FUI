@@ -186,6 +186,7 @@ function createCircularNav(items){
     while (items.length>numMaxElements) {
       otherItems.push(items.pop());
     }
+    otherItems.reverse();
 
     if(otherItemsHome.length==0){
       otherItemsHome=otherItems;
@@ -207,6 +208,7 @@ function createCircularNav(items){
     wheel2.sliceInitPathCustom = wheel2.slicePathCustom;
     wheel2.spreaderRadius = 85;
     wheel2.clickModeRotate = false;
+    wheel2.clockwise=false;
 
     wheel2.initWheel(otherItems);
 
