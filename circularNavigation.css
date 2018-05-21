@@ -4,6 +4,7 @@
   position: fixed;
   z-index: 10;
   overflow: visible;
+
 }
 
 #foo{
@@ -40,7 +41,7 @@
 
 
 .notVisible{
-  display: none !important;
+  /*display: none !important;*/
   visibility: hidden;
 }
 

@@ -10,6 +10,7 @@ var open=false;
 //array where store the sub menus/links
 var linkTo=[];
 var otherItems=[];
+var otherItemsHome=[];
 
 //num max of elements in a circular navigation
 const numMaxElements=10;
@@ -33,9 +34,9 @@ var position = $('#wheelDiv').offset();
 var top_wheel = position.top;
 
 window.onload = function () {
-
-  setTimeout(function(){$('#wheelDiv').addClass("notVisible");}, 1);
   attachSubMenus();
+
+
 };
 
 
@@ -113,6 +114,13 @@ $('#foo').bind('click', function() {
 $('#home_btn').bind('click', function() {
   wheel.removeWheel();
   wheel = new wheelnav("wheelDiv");
+  if(itemsHome.length>numMaxElements){
+
+    itemsHome.splice(numMaxElements,1);
+
+    itemsHome=itemsHome.concat(otherItems);
+
+  }
   createCircularNav(itemsHome);
   itemsParentList=itemsHomeList;
   attachSubMenus();
@@ -165,10 +173,17 @@ function createCircularNav(items){
   // if there are more items add the "other" item
   if(items.length>numMaxElements){
     other=true;
+    otherItems=[];
+    wheel.wheelRadius=wheel.wheelRadius/1.2;
     while (items.length>numMaxElements) {
       otherItems.push(items.pop());
     }
-    items.push("Other");
+
+    if(otherItemsHome.length==0){
+      otherItemsHome=otherItems;
+    }
+
+    items.push(". . .");
 
     wheel.createWheel(items);
 
@@ -178,11 +193,12 @@ function createCircularNav(items){
     wheel2.slicePathFunction = slicePath().DonutSlice;
     wheel2.slicePathCustom = slicePath().DonutSliceCustomization();
     wheel2.minRadius = wheel.wheelRadius;
-    wheel2.slicePathCustom.minRadiusPercent = 0.9;
-    wheel2.slicePathCustom.maxRadiusPercent = 1.3;
+    wheel2.slicePathCustom.minRadiusPercent = 0.75;
+    wheel2.slicePathCustom.maxRadiusPercent = 1.1;
     wheel2.sliceSelectedPathCustom = wheel2.slicePathCustom;
     wheel2.sliceInitPathCustom = wheel2.slicePathCustom;
     wheel2.spreaderRadius = 85;
+    wheel2.clickModeRotate = false;
 
     wheel2.initWheel(otherItems);
 
@@ -284,20 +300,27 @@ function attachSubMenus(){
 
     }
     else if (i==numMaxElements) {
+      for(y=0;y<wheel2.navItems.length;y++){
+        wheel2.navItems[y].navItem.hide();
+      }
+
       var otherSelected = false;
-      wheel2.navItems[numMaxElements-1].navigateFunction = function () {
+      wheel.navItems[numMaxElements].navigateFunction = function () {
+
           if (otherSelected) {
             for(y=0;y<wheel2.navItems.length;y++){
               wheel2.navItems[y].navItem.hide();
             }
           }
           else {
-            for(y=0;y<whee2.navItems.length;y++){
+            for(y=0;y<wheel2.navItems.length;y++){
               wheel2.navItems[y].navItem.show();
             }
           }
           otherSelected = !otherSelected;
+
       };
+
     }
   }
 }
@@ -316,7 +339,7 @@ function positionHomeBtn(other=false){
     var height_wheel = $('#wheelDiv').height();
     //var left_wheel = position.left;
 
-    
+
     $('#home_btn').css({"left":left_wheel+(width_wheel/2)-35,"top":top_wheel+(height_wheel/2)-35});
     //$('#home_btn').css({"left":viewWidth/2,"top":viewHeight/2});
 }
