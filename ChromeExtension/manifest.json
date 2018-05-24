@@ -3,6 +3,10 @@
     "version": "1.0",
     "description": "Build an Extension!",
     "permissions": ["activeTab", "declarativeContent", "storage"],
+    "background": {
+     "scripts": ["jquery-3.3.1.js","background.js"],
+     "persistent": false
+    },
     "content_scripts": [{
     "matches": ["https://gizmodo.com/*"],
     "run_at": "document_end",
