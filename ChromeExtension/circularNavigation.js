@@ -19,19 +19,12 @@ var other=false;
 var itemsParentList=[];
 var itemsGrandParentList=[];
 var itemsHomeList = [];
-var circularNavContainer="";
-
 
 var height_wheel = $('#wheelDiv').height();
 $('#wheelDiv').width(height_wheel);
 
 
-chrome.storage.sync.get('circularMenu', function(data) {
-  circularNavContainer=data.circularMenu;
-});
-
-$( ".section-nav > .js_sections").attr('id', 'circularNavigation');
-
+selectMenu();
 // take the html and put the elements in an array of array
 itemsHome=items = retriveMenuItems($("#circularNavigation"),true);
 
@@ -381,7 +374,7 @@ function positionHomeBtn(other=false){
     var height_wheel = $('#wheelDiv').height();
 
     var width_wheel = $('#wheelDiv').width();
-    
+
 
     var viewWidth = $( window ).width();
     var left_wheel = (viewWidth-width_wheel)/2;
@@ -397,6 +390,23 @@ function positionHomeBtn(other=false){
 }
 
 
+
+function selectMenu(){
+  var circularNavContainer="";
+  //Gizmodo
+  if($( ".section-nav > .js_sections").length>0){
+    $( ".section-nav > .js_sections").attr('id', 'circularNavigation');
+  }
+  //Treccani
+  else if ($( ".menu-first_level").length>0) {
+    $( ".menu-first_level").attr('id', 'circularNavigation');
+  }
+  else if ($( ".level").children('ul').length>0) {
+    $( ".level").children('ul').attr('id', 'circularNavigation');
+  }
+
+
+}
 
 function setTitleAngle(items){
   if(items.length==2){

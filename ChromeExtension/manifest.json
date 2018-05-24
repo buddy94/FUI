@@ -8,7 +8,7 @@
      "persistent": false
     },
     "content_scripts": [{
-    "matches": ["https://gizmodo.com/*"],
+    "matches": ["https://gizmodo.com/*", "http://www.unifr.ch/*", "http://www.treccani.it/*"],
     "run_at": "document_end",
     "css": ["circularNavigation.css"],
     "js": ["jquery-3.3.1.js","findMenu.js","Wheelnav/raphael.min.js","Wheelnav/wheelnav.js","circularNavigation.js"]
