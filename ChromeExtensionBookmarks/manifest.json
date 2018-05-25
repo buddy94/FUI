@@ -1,8 +1,8 @@
 {
-    "name": "Circular Navigation",
+    "name": "Circular Navigation Bookmarks",
     "version": "1.0",
-    "description": "Build a circular navigation from the navigation menu of a web site",
-    "permissions": ["activeTab", "declarativeContent", "storage"],
+    "description": "Build a circular navigation from the bookmarks",
+    "permissions": ["activeTab", "declarativeContent", "storage", "bookmarks"],
     "background": {
      "scripts": ["jquery-3.3.1.js","background.js"],
      "persistent": false
