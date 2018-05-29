@@ -1,8 +1,8 @@
 #wheelDiv{
-  top: 5vh;
-  height: 80vh;
+  top: 2vh;
+  height: 90vh;
   position: fixed;
-  z-index: 10;
+  z-index: 2147483630;
   overflow: visible;
 
 }
@@ -23,7 +23,7 @@
   bottom: -1.75em;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 6;
+  z-index: 2147483630;
   visibility: visible;
 }
 
@@ -36,6 +36,7 @@
 
 .cn-button {
     font-size: 1em;
+    font-style: normal !important;
   }
 
 
@@ -49,7 +50,7 @@
     width: 80px;
     height: 80px;
     position: fixed;
-    z-index: 11;
+    z-index: 2147483632;
 }
 
 
@@ -66,5 +67,5 @@ opacity: 0.3;
 -webkit-transition: all .3s ease;
 -moz-transition: all .3s ease;
 transition: all .3s ease;
-z-index: 2;
+z-index: 2147483610;
 }

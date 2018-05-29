@@ -1,0 +1,32 @@
+{
+    "name": "Circular Navigation Bookmarks",
+    "version": "1.0",
+    "description": "Build a circular navigation from the bookmarks",
+    "permissions": ["activeTab", "declarativeContent", "storage", "bookmarks"],
+    "background": {
+     "scripts": ["jquery-3.3.1.js","background.js"],
+     "persistent": false
+    },
+    "content_scripts": [{
+    "matches": ["https://gizmodo.com/*", "http://www.unifr.ch/*", "http://www.treccani.it/*"],
+    "run_at": "document_end",
+    "css": ["circularNavigation.css"],
+    "js": ["jquery-3.3.1.js","findMenu.js","Wheelnav/raphael.min.js","Wheelnav/wheelnav.js","circularNavigation.js"]
+      }],
+    "page_action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "images/get_started16.png",
+        "32": "images/get_started32.png",
+        "48": "images/get_started48.png",
+        "128": "images/get_started128.png"
+      }
+    },
+    "icons": {
+      "16": "images/get_started16.png",
+      "32": "images/get_started32.png",
+      "48": "images/get_started48.png",
+      "128": "images/get_started128.png"
+    },
+    "manifest_version": 2
+  }
