@@ -215,6 +215,7 @@ function createCircularNav(items){
     wheel2.slicePathFunction = slicePath().DonutSlice;
     wheel2.slicePathCustom = slicePath().DonutSliceCustomization();
     wheel2.minRadius = wheel.wheelRadius;
+	wheel2.selectedNavItemIndex = null;
     wheel2.slicePathCustom.minRadiusPercent = 0.75;
     wheel2.slicePathCustom.maxRadiusPercent = 1.1;
     wheel2.sliceSelectedPathCustom = wheel2.slicePathCustom;
@@ -401,6 +402,7 @@ function selectMenu(){
   else if ($( ".menu-first_level").length>0) {
     $( ".menu-first_level").attr('id', 'circularNavigation');
   }
+  //Unifr
   else if ($( ".level").children('ul').length>0) {
     $( ".level").children('ul').attr('id', 'circularNavigation');
   }

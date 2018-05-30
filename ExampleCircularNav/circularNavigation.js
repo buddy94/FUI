@@ -20,7 +20,8 @@ var itemsParentList=[];
 var itemsGrandParentList=[];
 var itemsHomeList = [];
 
-
+var height_wheel = $('#wheelDiv').height();
+$('#wheelDiv').width(height_wheel);
 // take the html and put the elements in an array of array
 itemsHome=items = retriveMenuItems($('#circularMenu'),true);
 
@@ -364,6 +365,8 @@ function attachSubMenus(){
 function positionHomeBtn(other=false){
 
 
+     var height_wheel = $('#wheelDiv').height();
+
     var width_wheel = $('#wheelDiv').width();
 
 
@@ -372,7 +375,7 @@ function positionHomeBtn(other=false){
     $('#wheelDiv').css({"left":left_wheel});
 
 
-    var height_wheel = $('#wheelDiv').height();
+
     //var left_wheel = position.left;
 
 
